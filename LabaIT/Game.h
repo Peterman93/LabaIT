@@ -23,5 +23,7 @@ private:
 	std::string m_word;
 	std::vector<bool> m_guessedLetters;
 	GameState m_gameState = GameState::START;
-
+	char m_letter;
+	bool m_guessed = false;
+	int m_stage = -1;
 };
