@@ -52,6 +52,15 @@ bool Game::OnUpdate(float deltaTime)
 			m_guessed = true;
 		}
 	}
+	if (!m_guessed)
+	{
+		m_stage++;
+		if (m_stage == 7) 
+		{
+			m_gameState = GameState::FINISH;
+			return true;
+		}
+	}
 	auto it = find(m_guessedLetters.begin(), m_guessedLetters.end(), false);
 	if (it != m_guessedLetters.end())
 	{
@@ -92,115 +101,17 @@ void Game::OnRender()
 		{
 			cout << "You guessed the letter!";
 		}
-		else
-		{
-			m_stage++;
-		}
 		if (m_stage == 0)
 		{
-			cout << endl <<
-				"  _________" << endl <<
-				"  |       |" << endl <<
-				"  |       |" << endl <<
-				"  |       |" << endl <<
-				"  |       |" << endl <<
-				"  |       |" << endl <<
-				" /|\\     /|\\" << endl <<
-				"/ | \\   / | \\" << endl;
+			cout << endl << m_drawings[m_stage] << endl;
 		}
-		if (m_letter != 0)
+		if (m_letter != 0 && m_stage > 0)
 		{
-			if (m_stage == 1)
-			{
-				cout << endl <<
-					"  _________" << endl <<
-					"  |   |   |" << endl <<
-					"  |       |" << endl <<
-					"  |       |" << endl <<
-					"  |       |" << endl <<
-					"  |       |" << endl <<
-					" /|\\     /|\\" << endl <<
-					"/ | \\   / | \\" << endl;
-			}
-			if (m_stage == 2)
-			{
-				cout << endl <<
-					"  _________" << endl <<
-					"  |   |   |" << endl <<
-					"  |   O   |" << endl <<
-					"  |       |" << endl <<
-					"  |       |" << endl <<
-					"  |       |" << endl <<
-					" /|\\     /|\\" << endl <<
-					"/ | \\   / | \\" << endl;
-			}
-			if (m_stage == 3)
-			{
-				cout << endl <<
-					"  _________" << endl <<
-					"  |   |   |" << endl <<
-					"  |   O   |" << endl <<
-					"  |   |   |" << endl <<
-					"  |   |   |" << endl <<
-					"  |       |" << endl <<
-					" /|\\     /|\\" << endl <<
-					"/ | \\   / | \\" << endl;
-			}
-			if (m_stage == 4)
-			{
-				cout << endl <<
-					"  _________" << endl <<
-					"  |   |   |" << endl <<
-					"  |   O   |" << endl <<
-					"  |  /|   |" << endl <<
-					"  |   |   |" << endl <<
-					"  |       |" << endl <<
-					" /|\\     /|\\" << endl <<
-					"/ | \\   / | \\" << endl;
-			}
-			if (m_stage == 5)
-			{
-				cout << endl <<
-					"  _________" << endl <<
-					"  |   |   |" << endl <<
-					"  |   O   |" << endl <<
-					"  |  /|\\  |" << endl <<
-					"  |   |   |" << endl <<
-					"  |       |" << endl <<
-					" /|\\     /|\\" << endl <<
-					"/ | \\   / | \\" << endl;
-			}
-			if (m_stage == 6)
-			{
-				cout << endl <<
-					"  _________" << endl <<
-					"  |   |   |" << endl <<
-					"  |   O   |" << endl <<
-					"  |  /|\\  |" << endl <<
-					"  |   |   |" << endl <<
-					"  |  /    |" << endl <<
-					" /|\\     /|\\" << endl <<
-					"/ | \\   / | \\" << endl;
-			}
-			if (m_stage == 7)
-			{
-				cout << endl <<
-					"  _________" << endl <<
-					"  |   |   |" << endl <<
-					"  |   O   |" << endl <<
-					"  |  /|\\  |" << endl <<
-					"  |   |   |" << endl <<
-					"  |  / \\  |" << endl <<
-					" /|\\     /|\\" << endl <<
-					"/ | \\   / | \\" << endl;
-				m_gameState = GameState::FINISH;
-			}
+			cout << endl << m_drawings[m_stage] << endl;
+			
 		}
-
-		cout << "Please guess the letter: " << endl;
-		
+		cout << "Please guess the letter: " << endl;		
 	}
-
 
 	if (m_gameState == GameState::FINISH && m_stage < 7)
 	{
