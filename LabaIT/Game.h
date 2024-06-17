@@ -21,7 +21,6 @@ public:
 
 private:
 	std::string m_word;
-	std::vector<std::string> m_wordsPool = { "kolor", "silnik", "wzorzec", "silnie", "kanapka" };
 	std::vector<bool> m_guessedLetters;
 	GameState m_gameState = GameState::START;
 
